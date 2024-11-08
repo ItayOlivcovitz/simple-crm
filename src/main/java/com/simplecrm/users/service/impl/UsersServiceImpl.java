@@ -13,12 +13,11 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 @AllArgsConstructor
 public class UsersServiceImpl implements IUsersService {
-    private UsersRepository usersRepository;
+    private UsersRepository userRepository;
 
     /**
      * This method creates a new user account.
@@ -31,13 +30,13 @@ public class UsersServiceImpl implements IUsersService {
         User user = UserMapper.MapToUser(userDto, new User());
 
         // Check if a user with the given email already exists
-        Optional<User> optionalUser = usersRepository.findByEmail(userDto.getEmail());
+        Optional<User> optionalUser = userRepository.findByEmail(userDto.getEmail());
         if (optionalUser.isPresent()) {
             throw new UserAlreadyExistsException("User already exists with the given email: " + userDto.getEmail());
         }
 
         // Save the new user
-        usersRepository.save(user);
+        userRepository.save(user);
     }
 
 
@@ -57,7 +56,7 @@ public class UsersServiceImpl implements IUsersService {
      */
     @Override
     public UserDto fetchUser(String email) {
-        User user = usersRepository.findByEmail(email).orElseThrow(
+        User user = userRepository.findByEmail(email).orElseThrow(
                 ()-> new ResourceNotFoundException("User", "email", email));
         return UserMapper.MapToDto(user, new UserDto());    }
 
@@ -69,11 +68,11 @@ public class UsersServiceImpl implements IUsersService {
      */
     @Override
     public boolean updateUser(UserDto usersDto) {
-        User users = usersRepository.findByEmail(usersDto.getEmail()).orElseThrow(
+        User user = userRepository.findByEmail(usersDto.getEmail()).orElseThrow(
                 ()-> new ResourceNotFoundException("User", "email", usersDto.getEmail())
         );
-        UserMapper.MapToUser(usersDto, users);
-        usersRepository.save(users);
+        UserMapper.MapToUser(usersDto, user);
+        userRepository.save(user);
         return true;
     }
 
@@ -85,10 +84,10 @@ public class UsersServiceImpl implements IUsersService {
      */
     @Override
     public boolean deleteUser(String email) {
-        User users = usersRepository.findByEmail(email).orElseThrow(
+        User users = userRepository.findByEmail(email).orElseThrow(
                 ()-> new ResourceNotFoundException("user", "email", email)
         );
-        usersRepository.deleteById(users.getEmail());
+        userRepository.deleteById(users.getEmail());
         return true;
     }
 }

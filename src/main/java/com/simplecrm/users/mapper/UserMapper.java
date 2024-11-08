@@ -31,15 +31,17 @@ public class UserMapper {
 
 
     // Populates an existing Users entity from a UsersDto object
-    public static User MapToUser(UserDto usersDto, User users) {
-        users.setEmail(usersDto.getEmail());
-        users.setFirstName(usersDto.getFirstName());
-        users.setLastName(usersDto.getLastName());
-        users.setPhoneNumber(usersDto.getPhoneNumber());
+    public static User MapToUser(UserDto userDto, User user) {
+        user.setEmail(userDto.getEmail());
+        user.setFirstName(userDto.getFirstName());
+        user.setLastName(userDto.getLastName());
+        user.setPhoneNumber(userDto.getPhoneNumber());
 
+        System.out.println("userDto FirstName - : " + userDto.getFirstName());
+        System.out.println("userDto LastName - : " + userDto.getLastName());
         // Set roles to null or convert from role names if necessary
         // Here we assume roles will be set in the service layer if needed
 
-        return users;
+        return user;
     }
 }
