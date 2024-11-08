@@ -1,0 +1,17 @@
+com\simplecrm\users\dto\UserDto.class
+com\simplecrm\users\exception\UserAlreadyExistsException.class
+com\simplecrm\users\UsersApplication.class
+com\simplecrm\users\mapper\UserMapper.class
+com\simplecrm\users\controller\UsersController.class
+com\simplecrm\users\entity\User.class
+com\simplecrm\users\dto\ErrorResponseDto.class
+com\simplecrm\users\entity\Role.class
+com\simplecrm\users\dto\ResponseDto.class
+com\simplecrm\users\exception\ResourceNotFoundException.class
+com\simplecrm\users\entity\BaseEntity.class
+com\simplecrm\users\exception\GlobalExceptionHandler.class
+com\simplecrm\users\service\impl\UsersServiceImpl.class
+com\simplecrm\users\service\IUsersService.class
+com\simplecrm\users\repository\UsersRepository.class
+com\simplecrm\users\audit\AuditAwareImpl.class
+com\simplecrm\users\constants\UserConstants.class
